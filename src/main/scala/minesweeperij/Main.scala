@@ -2,11 +2,11 @@ package minesweeperij
 
 object Main {
 
-  def add(x: Int, y: Int): Int = {
-    x + y
-  }
-
   def main(args: Array[String]): Unit = {
-    println(add(2, 3))
+
+    val gameGrid = new Grid(8, 8).mineGrid
+    val mwGame = new Game(gameGrid)
+    mwGame.printGrid()
+
   }
 }
