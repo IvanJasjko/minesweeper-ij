@@ -2,7 +2,12 @@ package minesweeperij
 
 import scala.util.Random
 
+
 class Grid(width: Int, length: Int) {
+
+  def nM(): Int = {
+    0
+  }
 
   private val random = new Random
 
@@ -16,6 +21,11 @@ class Grid(width: Int, length: Int) {
 
   private val mineCords = random.shuffle(emptyGrid).take(mineCount)
 
-  val mineGrid = emptyGrid.map( x => if (mineCords contains x) (x, true) else (x, false) ).toVector
+  // Requires 2 traversals :(
+  val mineGrid = emptyGrid.map( x => if (mineCords contains x) (x, (true, nM())) else (x, (false, nM())) ).toMap
+
+  val size = mineGrid.size
+  val gridWidth = width
+  val gridLength = length
 
 }

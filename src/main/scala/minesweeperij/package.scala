@@ -1,5 +1,5 @@
 package object minesweeperij {
 
-  type MwGrid = Vector[((Int, Int), Boolean)]
+  type MwGrid = Map[(Int, Int), Boolean]
 
 }
