@@ -16,4 +16,8 @@ object Utils {
     ) yield (i, j)
   }
 
+  def haveCommons(l1: Seq[(Int, Int)], l2: Seq[(Int, Int)]): Boolean = {
+    val dupes = for(i <- l1 if l2 contains i) yield i
+    dupes.nonEmpty
+  }
 }

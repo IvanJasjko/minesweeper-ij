@@ -6,7 +6,7 @@ import Utils._
 class Grid(width: Int, length: Int) {
   private val random = new Random
 
-  private def surMines(cords: (Int, Int), mineCords: IndexedSeq[(Int, Int)]): Int = {
+  private def surMines(cords: (Int, Int), mineCords: CordsList): Int = {
     val surCords = rangeAround(cords._1, cords._2)
     val mines = for (i <- surCords if mineCords.contains(i)) yield i
     mines.length
@@ -15,8 +15,8 @@ class Grid(width: Int, length: Int) {
   // A standard 8*8 minesweeper board has 10 bombs
   private val mineCount = (width * length / 6.4).toInt
 
-  private val emptyGrid = range2(width, length)
-  private val mineCords = random.shuffle(emptyGrid).take(mineCount)
+  val emptyGrid: CordsList  = range2(width, length)
+  val mineCords: CordsList  = random.shuffle(emptyGrid).take(mineCount)
 
   // Requires 2 traversals :(
   val mineGrid: MwGrid = emptyGrid

@@ -7,25 +7,30 @@ class Drawer(gameGrid: Grid) {
     print(" ")
   }
 
-  def printGrid(openCords: Seq[(Int, Int)], markedCords: Seq[(Int, Int)]): Unit = {
+  def printGrid(openCords: CordsList): Unit = {
     for (i <- 1 to gameGrid.gridWidth) {
       println()
 
       for (j <- 1 to gameGrid.gridLength) {
 
-        if (openCords contains (i, j))
+        if (openCords contains (i, j)) {
+          // Checks if bomb condition is true
           if (gameGrid.mineGrid(i, j)._1)
             pPrint("B")
           else
             pPrint(gameGrid.mineGrid(i, j)._2.toString)
-
-        else if (markedCords contains (i, j))
-          pPrint("F")
-
-        else
+        } else {
           pPrint("#")
+        }
       }
     }
-    println()
+    println("\n")
+  }
+
+  def printOutcome(text: String): Unit = {
+    println(text)
+    val allCords = Utils.range2(gameGrid.gridWidth, gameGrid.gridLength)
+    printGrid(allCords)
+    System.exit(0)
   }
 }
