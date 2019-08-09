@@ -6,8 +6,8 @@ import Utils._
 class Grid(width: Int, length: Int) {
   private val random = new Random
 
-  private def surMines(cords: (Int, Int), mineCords: CordsList): Int = {
-    val surCords = rangeAround(cords._1, cords._2)
+  private def surMines(cords: Cords, mineCords: CordsList): Int = {
+    val surCords = rangeAround(cords)
     val mines = for (i <- surCords if mineCords.contains(i)) yield i
     mines.length
   }
@@ -26,5 +26,4 @@ class Grid(width: Int, length: Int) {
   val size: Int = mineGrid.size
   val gridWidth: Int = width
   val gridLength: Int = length
-
 }

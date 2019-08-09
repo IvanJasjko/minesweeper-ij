@@ -10,10 +10,10 @@ class Drawer(gameGrid: Grid) {
   }
 
   def printGrid(openCords: CordsList): Unit = {
-    for (i <- 1 to gameGrid.gridWidth) {
+    for (j <- 1 to gameGrid.gridLength) {
       println()
 
-      for (j <- 1 to gameGrid.gridLength) {
+      for (i <- 1 to gameGrid.gridWidth) {
 
         if (openCords contains (i, j)) {
           // Checks if bomb condition is true

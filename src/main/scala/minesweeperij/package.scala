@@ -1,7 +1,9 @@
 package object minesweeperij {
 
-  type MwGrid = Map[(Int, Int), (Boolean, Int)]
+  type Cords = (Int, Int)
 
   type CordsList = Seq[(Int, Int)]
+
+  type MwGrid = Map[Cords, (Boolean, Int)]
 
 }
