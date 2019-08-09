@@ -23,6 +23,10 @@ class GamePlay(gameGrid: Grid, output: Drawer) {
     }
   }
 
+  private def cellExpand(initCells: List[(Int, Int)]): List[(Int, Int)] = {
+    List((69,69),(70,70))
+  }
+
   def playGame(): Unit = {
     val openCells = ListBuffer[(Int, Int)]()
 
@@ -32,12 +36,18 @@ class GamePlay(gameGrid: Grid, output: Drawer) {
     while(!haveCommons(openCells, gameGrid.mineCords)) {
       val oc = askCords("Enter coordinates to open a cell:")
 
-      if (!(openCells contains oc))
+      if (!(openCells contains oc) && (oc._2 < gameGrid.gridWidth) && (oc._1 < gameGrid.gridLength))
         openCells += oc
 
-      output.printGrid(openCells)
-    }
+      cellExpand(openCells.toList).foreach(openCells +=)
 
+      output.printGrid(openCells)
+
+      val safeCells = gameGrid.mineGrid.map{ case (cords, bombs) => if (!bombs._1) cords }.filter(_ != ())
+
+      if (openCells.toSet == safeCells.toSet)
+          output.printOutcome("You've Won! :)")
+    }
     output.printOutcome("You've Lost :(")
   }
 }

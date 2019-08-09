@@ -1,5 +1,7 @@
 package minesweeperij
 
+import Utils.range2
+
 class Drawer(gameGrid: Grid) {
 
   private def pPrint(symbol: String) {
@@ -29,8 +31,7 @@ class Drawer(gameGrid: Grid) {
 
   def printOutcome(text: String): Unit = {
     println(text)
-    val allCords = Utils.range2(gameGrid.gridWidth, gameGrid.gridLength)
-    printGrid(allCords)
+    printGrid(range2(gameGrid.gridWidth, gameGrid.gridLength))
     System.exit(0)
   }
 }
